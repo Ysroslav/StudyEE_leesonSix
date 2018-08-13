@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Yaroslav
+  Date: 13.08.2018
+  Time: 23:57
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+
+      xml:lang="en" lang="en">
+<h:head>
+    <title>Type</title>
+    <h:outputStylesheet library="css" name = "mystyle.css"/>
+    <ul class = "menu">
+        <li><a href = "faces/index.xhtml">PICTURE</a></li>
+        <li><a href = "faces/types.xhtml">TYPE</a></li>
+        <li><a href = "faces/sales.xhtml">SALES</a></li>
+    </ul>
+
+</h:head>
+<h:body>
+<h1> JSF Table for Types of the picture</h1>
+
+    <h:form>
+        <h:dataTable value = "#{typePictureBean.list}" var = "l"
+                     styleClass="order-table"
+                     headerClass="order-table-header"
+                     rowClasses="order-table-odd-row, order-table-even-row">
+            <h:column>
+                <f:facet name = "header">Type Name</f:facet>
+                <h:inputText value = "#{l.nameType}" size = "10" rendered="#{l.editable}"/>
+                <h:outputText id = "sname" value = "#{l.nameType}" rendered="#{not l.editable}"/>
+                <h:message for="sname" style="color:red"/>
+            </h:column>
+            <h:column>
+                <f:facet name = "header">Short name</f:facet>
+                <h:inputText value = "#{l.shortName}" size = "10" rendered="#{l.editable}"/>
+                <h:outputText id = "sshort" value = "#{l.shortName}" rendered="#{not l.editable}"/>
+
+                <h:message for="sshort" style="color:red"/>
+            </h:column>
+            <h:column>
+                <h:commandLink value="Edit" action ="#{typePictureBean.editAction(l)}" rendered="#{not l.editable}"/>
+            </h:column>
+            <h:column>
+                <h:commandLink value="Delete" action ="#{typePictureBean.deleteAction(l)}" rendered="#{not l.editable}"/>
+            </h:column>
+        </h:dataTable>
+        <h:commandButton value = "Save" action="#{typePictureBean.saveAction}" />
+        <h:commandButton value = "Add" action="#{typePictureBean.addAction()}" />
+    </h:form>
+    
+</h:body>
+
+</html>

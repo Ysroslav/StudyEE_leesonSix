@@ -2,41 +2,40 @@ package com.gallerycrm.entities;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-@Named
-@SessionScoped
+@Entity
+@Table(name = "Sale")
 
-public class Sale implements Serializable {
+public class Sale implements Serializable, DBObjects {
 
-    @NotNull(message = "Поле не должно быть пустым")
-    private Picture picture;
-    @NotNull(message = "Поле не должно быть пустым")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name = "picture_id", nullable = false, updatable = true)
+    private Long pictureId;
+    @Column(name = "prize", nullable = false, updatable = true)
     private double prize;
-    @NotNull(message = "Поле не должно быть пустым")
-    private String manager;
+    @Column(name = "manager_id", nullable = false, updatable = true)
+    private Long managerId;
     boolean editable;
 
     public Sale(){}
-    public Sale(Picture picture, double prize, String manager){
 
-        this.picture = picture;
-        this.prize = prize;
-        this.manager = manager;
-    }
-
-    public void setPicture(Picture picture){this.picture = picture;}
+    public void setId(Long id){this.id = id;}
+    public void setPictureId(Long pictureId){this.pictureId = pictureId;}
     public void setPrize(double prize){this.prize = prize;}
     public void setEditable(boolean editable){this.editable = editable;}
-
-    public void setManager(String manager) {
-        this.manager = manager;
+    public void setManagerId(Long managerId) {
+        this.managerId = managerId;
     }
 
-    public String getManager(){return manager;}
-    public Picture getPicture(){return picture;}
-
+    public Long getId(){return id;}
+    public Long getManagerId(){return managerId;}
+    public Long getPictureId(){return pictureId;}
     public double getPrize() {
         return prize;
     }

@@ -11,20 +11,20 @@ import java.util.List;
 public class SaleDAO extends AbstractDAO {
 
     @NotNull
-    public List<Sale> getListPicture(){
+    public List<Sale> getListSale(){
         return manager.createQuery("SELECT e " +
                 "FROM tbl_sale e ORDER BY e.date_input", Sale.class).getResultList();
     }
 
     @NotNull
-    public List<Sale> getListPictureByAuthorId(@Nullable final String pictureId){
+    public List<Sale> getListSaleByPictureId(@Nullable final String pictureId){
         if(pictureId ==null || pictureId.isEmpty()) return Collections.emptyList();
         return manager.createQuery("SELECT e FROM tbl_sale e " +
                 "WHERE e.picture_id = :pictureId ORDER BY e.date_input", Sale.class).getResultList();
     }
 
     @Nullable
-    public Sale getPictureById(@Nullable final String saleId){
+    public Sale getSaleById(@Nullable final String saleId){
         if(saleId ==null || saleId.isEmpty()) return null;
         return getEntity(manager.createQuery("SELECT e FROM tbl_sale e WHERE e.id = :id", Sale.class).setParameter("id", saleId));
     }
@@ -42,9 +42,9 @@ public class SaleDAO extends AbstractDAO {
         return manager.merge(sale);
     }
 
-    public void removeTaskById(@Nullable final String saleId){
+    public void removeSaleById(@Nullable final String saleId){
         if(saleId == null||saleId.isEmpty()) return;
-        final Sale sale = getPictureById(saleId);
+        final Sale sale = getSaleById(saleId);
         manager.remove(sale);
     }
 

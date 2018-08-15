@@ -27,7 +27,7 @@ public class SaleListController {
     @NotNull
     public List<Sale> getListSale(){
         if(pictureId==null || pictureId.isEmpty()) return saleDAO.getListSale();
-        return saleDAO.getListSaleByPicturId(pictureId);
+        return saleDAO.getListSaleByPictureId(pictureId);
     }
 
     public void removeSaleById(@Nullable final String saleId){

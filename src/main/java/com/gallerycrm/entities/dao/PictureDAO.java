@@ -20,8 +20,8 @@ public class PictureDAO extends AbstractDAO {
     }
 
     @NotNull
-    public List<Picture> getListPictureByAuthorId(@Nullable final String authorId){
-        if(authorId ==null || authorId.isEmpty()) return Collections.emptyList();
+    public List<Picture> getListPictureByTypeId(@Nullable final String typeId){
+        if(typeId ==null || typeId.isEmpty()) return Collections.emptyList();
         return manager.createQuery("SELECT e FROM tbl_picture e " +
                 "WHERE e.athor_id = :authorId ORDER BY e.date_input", Picture.class).getResultList();
     }
@@ -45,7 +45,7 @@ public class PictureDAO extends AbstractDAO {
         return manager.merge(picture);
     }
 
-    public void removeTaskById(@Nullable final String pictureId){
+    public void removePictureById(@Nullable final String pictureId){
         if(pictureId == null||pictureId.isEmpty()) return;
         final Picture picture = getPictureById(pictureId);
         manager.remove(picture);

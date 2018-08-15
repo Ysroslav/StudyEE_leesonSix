@@ -29,14 +29,14 @@
     <h1> JSF Table for Sales</h1>
 
     <h:form>
-        <h:dataTable value = "#{saleBean.list}" var = "l"
+        <h:dataTable value = "#{saleListController.listSale}" var = "l"
                      styleClass="order-table"
                      headerClass="order-table-header"
                      rowClasses="order-table-odd-row, order-table-even-row">
             <h:column>
                 <f:facet name = "header">Picture</f:facet>
-                <h:inputText value = "#{l.picture.title}" size = "10" rendered="#{l.editable}"/>
-                <h:outputText id = "spicture" value = "#{l.picture.title}" rendered="#{not l.editable}"/>
+                <h:inputText value = "#{pictureController.pictureById.title}" size = "10" rendered="#{l.editable}"/>
+                <h:outputText id = "spicture" value = "#{pictureController.pictureById.title}" rendered="#{not l.editable}"/>
                 <h:message for="spicture" style="color:red"/>
             </h:column>
             <h:column>
@@ -45,21 +45,7 @@
                 <h:outputText id = "sprize" value = "#{l.prize}" rendered="#{not l.editable}"/>
                 <h:message for="sprize" style="color:red"/>
             </h:column>
-            <h:column>
-                <f:facet name = "header">Manager</f:facet>
-                <h:inputText value = "#{l.manager}" size = "10" rendered="#{l.editable}"/>
-                <h:outputText id = "smanager" value = "#{l.manager}" rendered="#{not l.editable}"/>
-                <h:message for="smanager" style="color:red"/>
-            </h:column>
-            <h:column>
-                <h:commandLink value="Edit" action ="#{saleBean.editAction(l)}" rendered="#{not l.editable}"/>
-            </h:column>
-            <h:column>
-                <h:commandLink value="Delete" action ="#{saleBean.deleteAction(l)}" rendered="#{not l.editable}"/>
-            </h:column>
         </h:dataTable>
-        <h:commandButton value = "Save" action="#{saleBean.saveAction}" />
-        <h:commandButton value = "Add" action="#{saleBean.addAction()}" />
     </h:form>
 
 </h:body>

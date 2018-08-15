@@ -23,7 +23,7 @@
 <h1> JSF Table for Picture</h1>
 
     <h:form>
-<h:dataTable value = "#{pictureBean.list}" var = "l"
+<h:dataTable value = "#{pictureListController.listPicture}" var = "l"
 styleClass="order-table"
 headerClass="order-table-header"
 rowClasses="order-table-odd-row, order-table-even-row">
@@ -46,15 +46,7 @@ rowClasses="order-table-odd-row, order-table-even-row">
         <h:outputText id = "svalue" value = "#{l.valueBalance}" rendered="#{not l.editable}"/>
         <h:message for="svalue" style="color:red"/>
     </h:column>
-    <h:column>
-        <h:commandLink value="Edit" action ="#{pictureBean.editAction(l)}" rendered="#{not l.editable}"/>
-    </h:column>
-    <h:column>
-        <h:commandLink value="Delete" action ="#{pictureBean.deleteAction(l)}" rendered="#{not l.editable}"/>
-    </h:column>
 </h:dataTable>
-        <h:commandButton value = "Save" action="#{pictureBean.saveAction}" />
-        <h:commandButton value = "Add" action="#{pictureBean.addAction()}" />
     </h:form>
 </h:body>
 </html>
